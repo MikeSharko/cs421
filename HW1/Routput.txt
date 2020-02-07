@@ -1,0 +1,24 @@
+Script started on Fri 07 Feb 2020 11:59:11 AM PST
+]0;shark003@empress:~/GIT/cs421/HW1[?1034h[shark003@empress HW1]$ ls
+[0m[38;5;34mgenerator[0m  generator.cpp  [38;5;34mrecognizer[0m  recognizer.cpp  ,Routput.txt
+]0;shark003@empress:~/GIT/cs421/HW1[shark003@empress HW1]$ ./recognizer 
+Enter a string to check, enter "end" to exit
+0
+Yes in L 
+1
+Yes in L 
+00110
+Yes in L 
+2
+No, Not in L
+02
+No, Not in L
+31
+No, Not in L
+exit
+No, Not in L
+end
+]0;shark003@empress:~/GIT/cs421/HW1[shark003@empress HW1]$ exit
+exit
+
+Script done on Fri 07 Feb 2020 12:00:10 PM PST
