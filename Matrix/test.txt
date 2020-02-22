@@ -1,0 +1,10 @@
+Script started on Fri 21 Feb 2020 05:05:38 PM PST
+]0;shark003@empress:~/GIT/cs421/Matrix[?1034h[shark003@empress Matrix]$ ./matrix 
+Reading table from lines.txt...
+0| a b c  | d e f  | - - -  | - - -  | 
+1| - - -  | - - -  | g h i  | j k l  | 
+2| - - -  | - - -  | - - -  | - - -  | 
+]0;shark003@empress:~/GIT/cs421/Matrix[shark003@empress Matrix]$ exit
+exit
+
+Script done on Fri 21 Feb 2020 05:05:47 PM PST
