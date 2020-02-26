@@ -62,6 +62,8 @@ bool ident_token(string s)
   cout << "Trying the mytoken machine..." << endl;
     
     while (s[charpos] != '\0'){
+        cout << "current state: " << state << endl;
+        cout << "character: " << s[charpos] << endl;
     
     if (state == 0 && s[charpos] == 'a')
         state = 1;
@@ -91,6 +93,8 @@ bool real_token(string s)
     int charpos = 0;
     cout << "Trying the mytoken machine..." << endl;
     while (s[charpos] != '\0'){
+        cout << "current state: " << state << endl;
+        cout << "character: " << s[charpos] << endl;
            
     if (state == 0 && s[charpos] == '2')
         state = 1;
@@ -126,6 +130,8 @@ bool integer_token(string s)
     int charpos = 0;
     cout << "Trying the mytoken machine..." << endl;
        while (s[charpos] != '\0'){
+           cout << "current state: " << state << endl;
+           cout << "character: " << s[charpos] << endl;
     
     if (state == 0 && s[charpos] == '2')
         state = 1;
