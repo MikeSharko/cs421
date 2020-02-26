@@ -59,6 +59,9 @@ bool ident_token(string s)
 {
   int state = 0;
   int charpos = 0;
+  cout << "Trying the mytoken machine..." << endl;
+    
+    while (s[charpos] != '\0'){
     
     if (state == 0 && s[charpos] == 'a')
         state = 1;
@@ -66,8 +69,12 @@ bool ident_token(string s)
     state = 1;
     else if ((state == 1 && s[charpos] == 'a') || (state == 1 && s[charpos] == 'b') || (state == 1 && s[charpos] == '_') || (state == 1 && s[charpos] == '2') || (state == 1 && s[charpos] == '3'))
     state = 1;
-    
-    
+    else {
+            cout << "I am stuck in state " << state << endl;
+            return(false);
+    }
+        charpos++;
+    }
     if (state == 1) return(true);  // end in a final state
      else return(false);
 
@@ -82,7 +89,9 @@ bool real_token(string s)
 {
     int state = 0;
     int charpos = 0;
-    
+    cout << "Trying the mytoken machine..." << endl;
+    while (s[charpos] != '\0'){
+           
     if (state == 0 && s[charpos] == '2')
         state = 1;
     else if (state == 0 && s[charpos] == '3')
@@ -95,7 +104,15 @@ bool real_token(string s)
            state = 3;
     else if (state == 2 && s[charpos] == '3')
     state = 3;
-    if (state == 3) return(true);  // end in a final state
+    else{
+        cout << "I am stuck in state " << state << endl;
+        return(false);
+    }
+    
+        charpos++;
+    }
+        
+        if (state == 3) return(true);  // end in a final state
         else return(false);
    
 }//end of real
@@ -107,12 +124,19 @@ bool integer_token(string s)
 {
     int state = 0;
     int charpos = 0;
+    cout << "Trying the mytoken machine..." << endl;
+       while (s[charpos] != '\0'){
     
     if (state == 0 && s[charpos] == '2')
         state = 1;
     else if (state == 0 && s[charpos] == '3')
         state = 1;
-    
+    else{
+        cout << "I am stuck in state " << state << endl;
+        return(false);
+    }
+           charpos++;
+       }
     if (state == 1) return(true);  // end in a final state
         else return(false);
     
