@@ -97,16 +97,16 @@ bool real_token(string s)
         cout << "character: " << s[charpos] << endl;
            
     if (state == 0 && s[charpos] == '2')
-        state = 1;
+        state = 0;
     else if (state == 0 && s[charpos] == '3')
-    state = 1;
+    state = 0;
     else if (state == 0 && s[charpos] == ' ')
     state = 1;
     else if (state == 1 && s[charpos] == '.')
         state = 2;
     else if (state == 2 && s[charpos] == '2')
            state = 3;
-    else if (state == 2 && s[charpos] == '3')
+    else if (state == 2 && s[charpos] == '3')   // not correct here
     state = 3;
     else{
         cout << "I am stuck in state " << state << endl;
