@@ -137,6 +137,8 @@ bool integer_token(string s)
         state = 1;
     else if (state == 0 && s[charpos] == '3')
         state = 1;
+    else if ((state == 1 && s[charpos] == '2') || (state == 1 && s[charpos] == '3') )
+        state = 1;
     else{
         cout << "I am stuck in state " << state << endl;
         return(false);
