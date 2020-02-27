@@ -54,12 +54,12 @@ bool mytoken(string s)
 //d can be either 2 or 3
 
 // IDENT DFA
-// This FA is for RE:  l ( l | d | _ )^*
+// This FA is for RE:  a|b ( (a|b) | (2|3) | _ )^*
 bool ident_token(string s)
 {
   int state = 0;
   int charpos = 0;
-  cout << "Trying the mytoken machine..." << endl;
+  cout << "Trying the mytoken machine for a|b ( (a|b) | (2|3) | _ )^* " << endl;
     
     while (s[charpos] != '\0'){
         cout << "current state: " << state << endl;
@@ -91,7 +91,7 @@ bool real_token(string s)
 {
     int state = 0;
     int charpos = 0;
-    cout << "Trying the mytoken machine..." << endl;
+    cout << "Trying the mytoken machine for (2|3)^*.(2|3)^+" << endl;
     while (s[charpos] != '\0'){
         cout << "current state: " << state << endl;
         cout << "character: " << s[charpos] << endl;
@@ -127,12 +127,12 @@ bool real_token(string s)
 
 
 //INT DFA
-// This FA is for RE:  d^+
+// This FA is for RE:  (2|3)^+
 bool integer_token(string s)
 {
     int state = 0;
     int charpos = 0;
-    cout << "Trying the mytoken machine..." << endl;
+    cout << "Trying the mytoken machine for d^+" << endl;
        while (s[charpos] != '\0'){
            cout << "current state: " << state << endl;
            cout << "character: " << s[charpos] << endl;
