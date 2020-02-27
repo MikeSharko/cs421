@@ -86,7 +86,7 @@ bool ident_token(string s)
 
 
 // REAL DFA
-// This FA is for RE:  d^* . d^+
+// This FA is for RE:  (2|3)^* . (2|3)^+
 bool real_token(string s)
 {
     int state = 0;
@@ -104,10 +104,14 @@ bool real_token(string s)
 //    state = 1;
     else if (state == 0 && s[charpos] == '.')
         state = 1;
-    else if (state == 1 && s[charpos] == '2')
-           state = 1;
-    else if (state == 1 && s[charpos] == '3')   // not correct here
-    state = 1;
+    else if (state == 1 && s[charpos] == '2' )
+           state = 2;
+    else if (state == 1 && s[charpos] == '3')
+    state = 2;
+    else if (state == 2 && s[charpos] == '3')  // d^+
+        state = 2;
+    else if (state == 2 && s[charpos] == '2')  // d^+
+        state = 2;
     else{
         cout << "I am stuck in state " << state << endl;
         return(false);
@@ -116,7 +120,7 @@ bool real_token(string s)
         charpos++;
     }
         
-        if (state == 1) return(true);  // end in a final state
+        if (state == 2) return(true);  // end in a final state
         else return(false);
    
 }//end of real
