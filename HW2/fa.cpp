@@ -17,101 +17,97 @@
 #include <fstream>
 using namespace std;
 
-
-bool mytoken(string s)
-{
-  int state = 0;
-  int charpos = 0;
-
-  cout << "Trying the mytoken machine..." << endl;
- 
-  while (s[charpos] != '\0')
-    {
-      cout << "current state: " << state << endl;
-      cout << "character: " << s[charpos] << endl;
- 
-      if (state == 0 && s[charpos] == 'a')
-      state = 1;
-      else if (state == 1 && s[charpos] == 'b')
-      state = 2;
-      else if (state == 2 && s[charpos] == 'b')
-      state = 2;
-      else
-    {
-      cout << "I am stuck in state " << state << endl;
-      return(false);
-    }
-      charpos++;
-    }//end of while
-
-  // where did I end up????
-  if (state == 2) return(true);  // end in a final state
-   else return(false);
-}// end of mytoken
+// -------  I commented it , because we are not using it
+//bool mytoken(string s)
+//{
+//  int state = 0;
+//  int charpos = 0;
+//
+//  cout << "Trying the mytoken machine..." << endl;
+//
+//  while (s[charpos] != '\0')
+//    {
+//      cout << "current state: " << state << endl;
+//      cout << "character: " << s[charpos] << endl;
+//
+//      if (state == 0 && s[charpos] == 'a')
+//      state = 1;
+//      else if (state == 1 && s[charpos] == 'b')
+//      state = 2;
+//      else if (state == 2 && s[charpos] == 'b')
+//      state = 2;
+//      else
+//    {
+//      cout << "I am stuck in state " << state << endl;
+//      return(false);
+//    }
+//      charpos++;
+//    }//end of while
+//
+//  // where did I end up????
+//  if (state == 2) return(true);  // end in a final state
+//   else return(false);
+//}// end of mytoken
 
 
 //Note: l(letter) can be either a or b
 //d can be either 2 or 3
 
-// IDENT DFA
+// ----------IDENT DFA---------------
 // This FA is for RE:  a|b ( (a|b) | (2|3) | _ )^*
 bool ident_token(string s)
 {
   int state = 0;
   int charpos = 0;
-  cout << "Trying the mytoken machine for a|b ( (a|b) | (2|3) | _ )^* " << endl;
+  cout << "Trying the mytoken machine for l ( l | d | _ )^* " << endl; //added this to the cout to visually see what function is checking the RE (it is more for me)
     
     while (s[charpos] != '\0'){
         cout << "current state: " << state << endl;
         cout << "character: " << s[charpos] << endl;
     
-    if (state == 0 && s[charpos] == 'a')
+    if (state == 0 && s[charpos] == 'a')  //handling first a's or b's
         state = 1;
-    else if (state == 0 && s[charpos] == 'b')
+    else if (state == 0 && s[charpos] == 'b')//handling first a's or b's
     state = 1;
-    else if ((state == 1 && s[charpos] == 'a') || (state == 1 && s[charpos] == 'b') || (state == 1 && s[charpos] == '_') || (state == 1 && s[charpos] == '2') || (state == 1 && s[charpos] == '3'))
+    // handling the ( (a|b) | (2|3) | _ )^*
+    else if ((state == 1 && s[charpos] == 'a') || (state == 1 && s[charpos] == 'b') || (state == 1 && s[charpos] == '_') || (state == 1 && s[charpos] == '2') || (state == 1 && s[charpos] == '3')) // instead of writing a banch of else if statements
     state = 1;
+    
     else {
-            cout << "I am stuck in state " << state << endl;
-            return(false);
+        cout << "I am stuck in state " << state << endl;
+        return(false);
     }
         charpos++;
     }
     if (state == 1) return(true);  // end in a final state
      else return(false);
-
-     
-  // ** complete this based on mytoken
 }//end of ident
 
 
-// REAL DFA
+// -----------REAL DFA--------------
 // This FA is for RE:  (2|3)^* . (2|3)^+
 bool real_token(string s)
 {
     int state = 0;
     int charpos = 0;
-    cout << "Trying the mytoken machine for (2|3)^*.(2|3)^+" << endl;
+    cout << "Trying the mytoken machine for d^*.d^+" << endl;//added this to the cout to visually see what function is checking the RE (it is more for me)
     while (s[charpos] != '\0'){
         cout << "current state: " << state << endl;
         cout << "character: " << s[charpos] << endl;
            
-    if (state == 0 && s[charpos] == '2')
+    if (state == 0 && s[charpos] == '2') //handling 0 or more 2's and 3's before '.'
         state = 0;
-    else if (state == 0 && s[charpos] == '3')
+    else if (state == 0 && s[charpos] == '3') //handling 0 or more 2's and 3's before '.'
     state = 0;
-//    else if (state == 0 && s[charpos] == ' ')
-//    state = 1;
-    else if (state == 0 && s[charpos] == '.')
+    else if (state == 0 && s[charpos] == '.') // could be without first digit
         state = 1;
-    else if (state == 1 && s[charpos] == '2' )
+    else if (state == 1 && s[charpos] == '2' ) //handling only 1 digit
            state = 2;
-    else if (state == 1 && s[charpos] == '3')
+    else if (state == 1 && s[charpos] == '3')  //handling only 1 digit
     state = 2;
-    else if (state == 2 && s[charpos] == '3')  // d^+
+    else if ((state == 2 && s[charpos] == '2') || (state == 2 && s[charpos] == '3') ) // handling 1+ digits
         state = 2;
-    else if (state == 2 && s[charpos] == '2')  // d^+
-        state = 2;
+   
     else{
         cout << "I am stuck in state " << state << endl;
         return(false);
@@ -126,13 +122,13 @@ bool real_token(string s)
 }//end of real
 
 
-//INT DFA
+//---------INT DFA-------------
 // This FA is for RE:  (2|3)^+
 bool integer_token(string s)
 {
     int state = 0;
     int charpos = 0;
-    cout << "Trying the mytoken machine for d^+" << endl;
+    cout << "Trying the mytoken machine for d^+" << endl; //added this to the cout to visually see what function is checking the RE (it is more for me)
        while (s[charpos] != '\0'){
            cout << "current state: " << state << endl;
            cout << "character: " << s[charpos] << endl;
@@ -198,11 +194,11 @@ int scanner(tokentype& the_type, string& w)
   fin >> w;  // grab next word from fain.txt
   cout << ">>>>>Word is:" << w << endl;
 
-    if (mytoken(w))
-       {
-           the_type = MYTOKEN;
-       }
-       else if(ident_token(w))
+//    if (mytoken(w))
+//       {
+//           the_type = MYTOKEN;
+//       }
+       if(ident_token(w))
        {
            the_type = IDENT;
        }
