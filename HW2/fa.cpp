@@ -105,9 +105,9 @@ bool real_token(string s)
     else if (state == 1 && s[charpos] == '.')
         state = 2;
     else if (state == 2 && s[charpos] == '2')
-           state = 3;
+           state = 2;
     else if (state == 2 && s[charpos] == '3')   // not correct here
-    state = 3;
+    state = 2;
     else{
         cout << "I am stuck in state " << state << endl;
         return(false);
@@ -116,7 +116,7 @@ bool real_token(string s)
         charpos++;
     }
         
-        if (state == 3) return(true);  // end in a final state
+        if (state == 2) return(true);  // end in a final state
         else return(false);
    
 }//end of real
